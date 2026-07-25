@@ -6,144 +6,7 @@
   <meta name="robots" content="noindex" />
   <title>MyFlowersGarden — панель управления</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!--
-    ВАЖНО про стилизацию UI-оболочки Decap CMS (не Preview Panel):
-    Decap не даёт официального API для тем — его интерфейс собран на
-    styled-components со сгенерированными именами классов, которые могут
-    меняться между версиями. Официальный совет команды Decap в этом случае —
-    писать CSS-переопределения поверх их разметки (см. обсуждение
-    decaporg/decap-cms#7353). Поэтому ниже стили нацелены на:
-      1) реальные HTML-теги (input, textarea, select, button, a) — они не
-         зависят от версии и всегда есть в DOM;
-      2) обёртку #nc-root — задаётся через официальный Custom Mount Element
-         (https://decapcms.org/docs/custom-mounting/), что даёт CSS ID-селектор
-         и гарантированно "перебивает" стили styled-components по специфичности.
-    Если после обновления Decap что-то из точечных селекторов перестанет
-    попадать — фон, шрифты, поля и кнопки (самое заметное) продолжат работать,
-    так как держатся на #1) и #2).
-  -->
-  <style>
-    :root {
-      --mfg-bg:          #FAF6F0;
-      --mfg-bg-alt:      #F2E9DE;
-      --mfg-forest:      #2C4A3B;
-      --mfg-forest-dark: #1B3026;
-      --mfg-rose:        #C98A93;
-      --mfg-rose-soft:   #F1DCDF;
-      --mfg-gold:        #B9975B;
-      --mfg-ink:         #262922;
-      --mfg-ink-soft:    #5B6259;
-      --mfg-radius:      10px;
-      --mfg-font-display: 'Playfair Display', Georgia, serif;
-      --mfg-font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-
-    html, body, #nc-root {
-      min-height: 100%;
-      background: var(--mfg-bg);
-    }
-
-    body,
-    #nc-root {
-      font-family: var(--mfg-font-body) !important;
-      color: var(--mfg-ink);
-    }
-
-    #nc-root h1, #nc-root h2, #nc-root h3 {
-      font-family: var(--mfg-font-display) !important;
-      color: var(--mfg-forest-dark) !important;
-    }
-
-    /* Скроллбар в фирменных тонах */
-    #nc-root ::-webkit-scrollbar { width: 10px; height: 10px; }
-    #nc-root ::-webkit-scrollbar-track { background: var(--mfg-bg-alt); }
-    #nc-root ::-webkit-scrollbar-thumb {
-      background: var(--mfg-forest);
-      border-radius: 999px;
-      border: 2px solid var(--mfg-bg-alt);
-    }
-
-    /* ===== Поля ввода (string / text / number / select и т.д.) ===== */
-    #nc-root input:not([type="checkbox"]):not([type="radio"]),
-    #nc-root textarea,
-    #nc-root select {
-      font-family: var(--mfg-font-body) !important;
-      background: #fff !important;
-      border: 1.5px solid rgba(44, 74, 59, .18) !important;
-      border-radius: var(--mfg-radius) !important;
-      color: var(--mfg-ink) !important;
-      padding: 11px 14px !important;
-      transition: border-color .18s ease, box-shadow .18s ease;
-      box-shadow: none !important;
-    }
-    #nc-root input:not([type="checkbox"]):not([type="radio"]):focus,
-    #nc-root textarea:focus,
-    #nc-root select:focus {
-      outline: none !important;
-      border-color: var(--mfg-forest) !important;
-      box-shadow: 0 0 0 3px rgba(44, 74, 59, .12) !important;
-    }
-
-    /* Ярлыки полей в форме редактирования записи */
-    #nc-root label {
-      font-family: var(--mfg-font-body) !important;
-      font-weight: 600;
-      color: var(--mfg-forest-dark);
-    }
-
-    /* ===== Кнопки ===== */
-    #nc-root button,
-    #nc-root a[role="button"] {
-      font-family: var(--mfg-font-body) !important;
-      border-radius: 999px !important;
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, opacity .18s ease !important;
-    }
-    #nc-root button:hover {
-      transform: translateY(-1px);
-    }
-
-    /* Основные акцентные кнопки (Save / Publish / New entry / Login) —
-       Decap помечает их зелёным/синим по умолчанию через inline-подобные
-       классы; перекрашиваем самые заметные через фильтр по тексту недоступен
-       в CSS, поэтому action-кнопки берём широким мазком по фону: */
-    #nc-root button[class*="css-"] {
-      font-weight: 600;
-    }
-
-    /* Карточки коллекций на главном экране и превью медиатеки */
-    #nc-root [class*="CardWrapper"],
-    #nc-root [class*="MediaLibraryCardImage"] {
-      border-radius: var(--mfg-radius) !important;
-    }
-
-    /* Ссылки */
-    #nc-root a { color: var(--mfg-forest); }
-    #nc-root a:hover { color: var(--mfg-rose); }
-
-    /* Общий фон рабочей области (не всегда попадает из-за styled-components,
-       но безопасен как fallback) */
-    #nc-root [class*="AppMainContainer"],
-    #nc-root [class*="Content"] {
-      background: var(--mfg-bg);
-    }
-
-    /* Экран логина */
-    #nc-root [class*="LoginButton"],
-    #nc-root [class*="AuthenticationPage"] button {
-      background: var(--mfg-forest) !important;
-      color: #fff !important;
-      border: none !important;
-      padding: 13px 26px !important;
-    }
-  </style>
-
-  <!-- Decap подхватит существующий div#nc-root вместо создания своего —
-       это официальный "Custom Mount Element", нужен нам, чтобы ID-селектор
-       #nc-root уверенно перебивал стили styled-components по специфичности. -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <div id="nc-root"></div>
@@ -154,18 +17,6 @@
   <script>
     /* ============================================================
        Кастомный предпросмотр каталога товаров.
-       В config.yml коллекция "products" — это file-коллекция: один файл
-       content/products/index.json со списком "items". Значит редактор
-       правит СРАЗУ ВЕСЬ файл, и превью должно рисовать всю сетку карточек
-       целиком (а не одну карточку), с полями ровно как в config.yml:
-         id       — string
-         category — select: rose | tulip | premium
-         tag      — string, необязательный бейдж на фото
-         title    — string
-         desc     — text
-         price    — number
-         unit     — string (например "/ 15 шт")
-         img      — image
        ============================================================ */
 
     var ProductsPreview = createClass({
@@ -229,8 +80,6 @@
       }
     });
 
-    // Для file-коллекций шаблон регистрируется по имени ФАЙЛА
-    // (files: - name: "products"), которое здесь совпадает с именем коллекции.
     CMS.registerPreviewTemplate('products', ProductsPreview);
     CMS.registerPreviewStyle('preview.css');
   </script>
