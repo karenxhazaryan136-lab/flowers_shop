@@ -44,7 +44,7 @@ button{ font-family:inherit; }
 header{ position:sticky; top:0; z-index:60; background:rgba(250,246,236,.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
 .header-inner{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:16px; }
 .logo{ display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif; font-size:20px; font-weight:500; white-space:nowrap; }
-.logo-mark{ width:32px; height:32px; flex-shrink:0; }
+.logo-mark{ width:32px; height:32px; flex-shrink:0; object-fit:cover; border-radius:8px; }
 .header-right{ display:flex; align-items:center; gap:16px; }
 .nav-link{ font-size:14px; font-weight:700; color:var(--ink-soft); white-space:nowrap; transition:color .2s ease; }
 .nav-link:hover{ color:var(--accent-deep); }
@@ -230,18 +230,12 @@ footer{ padding:36px 0; border-top:1px solid var(--line); }
 <header>
   <div class="wrap header-inner">
     <a class="logo" href="#top">
-      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="13" r="5.5" fill="none" stroke="#5f7a4f" stroke-width="1.6"/>
-        <circle cx="12.5" cy="21" r="5.5" fill="none" stroke="#5f7a4f" stroke-width="1.6"/>
-        <circle cx="27.5" cy="21" r="5.5" fill="none" stroke="#5f7a4f" stroke-width="1.6"/>
-        <circle cx="20" cy="21" r="4" fill="#c69a4a"/>
-        <path d="M20 25 L20 35" stroke="#435c37" stroke-width="1.6" stroke-linecap="round"/>
-      </svg>
-      <span class="logo-text" id="siteShopName">Цветочная Мастерская</span>
+      <img class="logo-mark" src="assets/uploads/logo-mark.png" alt="Букетная">
+      <span class="logo-text" id="siteShopName">Букетная</span>
     </a>
     <div class="header-right">
       <a class="nav-link" href="services.html">Услуги</a>
-      <a class="phone" id="sitePhoneLink" href="tel:+74951234567">+7 (495) 123-45-67<span id="siteHours">Ежедневно, 8:00–22:00</span></a>
+      <a class="phone" id="sitePhoneLink" href="tel:+79194273776">+7 (919) 427-37-76<span id="siteHours">ежедневно, 9:00–22:00</span></a>
       <button class="cart-btn magnetic" id="cartToggle" aria-label="Корзина">
         <svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>
         <span class="cart-count" id="cartCount">0</span>
@@ -332,13 +326,13 @@ footer{ padding:36px 0; border-top:1px solid var(--line); }
       <div class="contact-grid">
         <div class="contact-info reveal">
           <div>
-            <h2 id="siteShopNameBlock">Цветочная<br>Мастерская</h2>
+            <h2 id="siteShopNameBlock">Букетная</h2>
             <p class="sub">Приходите за букетом лично или закажите доставку — привезём в течение часа по городу.</p>
           </div>
           <ul class="contact-list">
-            <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b id="siteAddress">г. Москва, ул. Садовая, 14</b><span class="small" id="siteHours2">ежедневно, 8:00–22:00</span></div></li>
-            <li><svg viewBox="0 0 24 24"><path d="M4 5c0 8 7 15 15 15l2-4-5-2-2 2c-2-1-4-3-5-5l2-2-2-5-4 1Z"/></svg><div><b id="sitePhoneText">+7 (495) 123-45-67</b><span class="small">звонок и WhatsApp</span></div></li>
-            <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6 8 7 8-7"/></svg><div><b id="siteEmail">hello@flower-workshop.ru</b><span class="small">ответим в течение дня</span></div></li>
+            <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b id="siteAddress">ул. Чкалова, 47, Владикавказ</b><span class="small" id="siteHours2">ежедневно, 9:00–22:00</span></div></li>
+            <li><svg viewBox="0 0 24 24"><path d="M4 5c0 8 7 15 15 15l2-4-5-2-2 2c-2-1-4-3-5-5l2-2-2-5-4 1Z"/></svg><div><b id="sitePhoneText">+7 (919) 427-37-76</b><span class="small">звонок и WhatsApp</span></div></li>
+            <li><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg><div><a id="siteInstagram" href="https://www.instagram.com/buketnaya_vld/" target="_blank" rel="noopener"><b>@buketnaya_vld</b></a><span class="small">мы в Instagram</span></div></li>
           </ul>
         </div>
         <form class="contact-form reveal" id="orderForm">
@@ -356,8 +350,8 @@ footer{ padding:36px 0; border-top:1px solid var(--line); }
 
 <footer>
   <div class="wrap footer-inner">
-    <span>© 2026 <span id="siteShopNameFooter">Цветочная Мастерская</span>. Все права защищены.</span>
-    <span>Фото цветов: Pexels (свободная лицензия)</span>
+    <span>© 2026 <span id="siteShopNameFooter">Букетная</span>. Все права защищены.</span>
+    <a href="https://www.instagram.com/buketnaya_vld/" target="_blank" rel="noopener">Instagram: @buketnaya_vld</a>
   </div>
 </footer>
 
@@ -380,7 +374,7 @@ footer{ padding:36px 0; border-top:1px solid var(--line); }
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Product data ----------
-     Loaded from /content/products/index.json (editable via the /admin CMS).
+     Loaded from /content/products.json (editable via the /admin CMS).
      This array is only a fallback for when that file can't be fetched
      (e.g. opening the file directly instead of via a server). */
   var PRODUCTS = [
@@ -541,13 +535,14 @@ footer{ padding:36px 0; border-top:1px solid var(--line); }
 
   /* ---------- WhatsApp checkout ---------- */
   var SETTINGS = {
-    shopName: 'Цветочная Мастерская',
-    phone: '+7 (495) 123-45-67',
-    phoneHref: '+74951234567',
-    whatsapp: '74951234567',
-    address: 'г. Москва, ул. Садовая, 14',
-    hours: 'ежедневно, 8:00–22:00',
-    email: 'hello@flower-workshop.ru'
+    shopName: 'Букетная',
+    phone: '+7 (919) 427-37-76',
+    phoneHref: '+79194273776',
+    whatsapp: '79194273776',
+    address: 'ул. Чкалова, 47, Владикавказ',
+    hours: 'ежедневно, 9:00–22:00',
+    instagram: 'https://www.instagram.com/buketnaya_vld/',
+    instagramHandle: '@buketnaya_vld'
   };
 
   function buildWhatsAppLink(){
@@ -669,15 +664,18 @@ footer{ padding:36px 0; border-top:1px solid var(--line); }
     SETTINGS = s;
     document.getElementById('siteShopName').textContent = s.shopName;
     document.getElementById('siteShopNameFooter').textContent = s.shopName;
-    var nameParts = s.shopName.split(' ');
-    document.getElementById('siteShopNameBlock').innerHTML = nameParts.join('<br>');
+    document.getElementById('siteShopNameBlock').textContent = s.shopName;
     document.getElementById('sitePhoneLink').setAttribute('href', 'tel:' + s.phoneHref);
     document.getElementById('sitePhoneLink').firstChild.textContent = s.phone + ' ';
     document.getElementById('siteHours').textContent = s.hours;
     document.getElementById('siteHours2').textContent = s.hours;
     document.getElementById('siteAddress').textContent = s.address;
     document.getElementById('sitePhoneText').textContent = s.phone;
-    document.getElementById('siteEmail').textContent = s.email;
+    if(s.instagram){
+      var igLink = document.getElementById('siteInstagram');
+      igLink.setAttribute('href', s.instagram);
+      igLink.querySelector('b').textContent = s.instagramHandle || s.instagram;
+    }
     checkoutBtn.setAttribute('href', buildWhatsAppLink());
   }
 
