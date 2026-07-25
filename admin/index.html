@@ -6,30 +6,6 @@
   <meta name="robots" content="noindex" />
   <title>MyFlowersGarden — панель управления</title>
 
-  <style>
-  /* Հեռախոսների վրա (768px-ից փոքր էկրաններ) */
-  @media (max-width: 768px) {
-    /* Խմբագրման հատվածը դարձնում ենք 100% լայնությամբ */
-    #nc-root [class*="AppMainContainer"] > div,
-    #nc-root [class*="EditorContainer"] {
-      display: flex !important;
-      flex-direction: column !important;
-    }
-
-    /* Ձախ կողմի ֆորման ստանում է ամբողջ լայնությունը */
-    #nc-root [class*="ControlPaneContainer"] {
-      width: 100% !important;
-      max-width: 100% !important;
-    }
-
-    /* Աջ կողմի Preview panel-ը թաքցնում ենք հեռախոսի վրա, 
-       որպեսզի էկրանը չսեղմվի (ցանկության դեպքում աչքի նշանով կարող ես բացել) */
-    #nc-root [class*="PreviewPaneContainer"] {
-      display: none !important;
-    }
-  }
-</style>
-
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
