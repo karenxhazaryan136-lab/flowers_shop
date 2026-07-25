@@ -1,14 +1,12 @@
 /* ==========================================================================
    admin/preview.css
-   Стили для Preview Panel Decap CMS.
-   Подключается через CMS.registerPreviewStyle('preview.css') в index.html —
-   применяется ТОЛЬКО внутри iframe предпросмотра, поэтому файл самодостаточный
-   и дублирует нужный минимум переменных/классов из основного style.css сайта.
+   Стили ИСКЛЮЧИТЕЛЬНО для панели предпросмотра Decap CMS.
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700&display=swap');
 
-:root {
+.nc-preview-pane,
+.preview-stage {
   --color-bg:          #FAF6F0;
   --color-bg-alt:      #F2E9DE;
   --color-forest:      #2C4A3B;
@@ -26,32 +24,36 @@
   --radius-md: 12px;
   --shadow-card: 0 1px 2px rgba(27, 48, 38, .06), 0 12px 24px rgba(27, 48, 38, .07);
   --shadow-hover: 0 22px 44px rgba(27, 48, 38, .18);
-}
 
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
   font-family: var(--font-body);
   color: var(--color-ink);
   background: var(--color-bg-alt);
+  padding: 24px;
 }
 
-body { padding: 40px 24px; }
+.nc-preview-pane *, 
+.preview-stage * { 
+  box-sizing: border-box; 
+}
 
-h1, h2, h3 {
+.preview-stage h1, 
+.preview-stage h2, 
+.preview-stage h3 {
   font-family: var(--font-display);
   color: var(--color-forest-dark);
   margin: 0 0 .5em;
 }
 
-p { color: var(--color-ink-soft); line-height: 1.6; }
+.preview-stage p { 
+  color: var(--color-ink-soft); 
+  line-height: 1.6; 
+}
 
-img { max-width: 100%; display: block; }
+.preview-stage img { 
+  max-width: 100%; 
+  display: block; 
+}
 
-/* Сцена предпросмотра — имитирует секцию каталога сайта. Файл products
-   хранит СРАЗУ СПИСОК товаров (items), поэтому превью показывает всю
-   сетку карточек целиком, как выглядит секция #catalog на сайте. */
 .preview-stage {
   max-width: 900px;
   margin: 0 auto;
@@ -89,7 +91,7 @@ img { max-width: 100%; display: block; }
   margin-left: 2px;
 }
 
-/* ===== Карточка товара — 1:1 копия .product-card с основного сайта ===== */
+/* ===== Product Card ===== */
 
 .product-card {
   background: #fff;
@@ -100,6 +102,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   flex-direction: column;
 }
+
 .product-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-hover);
@@ -111,11 +114,13 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   background: var(--color-bg-alt);
 }
+
 .product-card__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .product-card__media--empty {
   display: flex;
   align-items: center;
@@ -139,6 +144,7 @@ img { max-width: 100%; display: block; }
   padding: 6px 12px;
   border-radius: 999px;
 }
+
 .product-card__tag--gold {
   background: var(--color-gold);
   color: #fff;
@@ -179,7 +185,7 @@ img { max-width: 100%; display: block; }
   color: var(--color-forest);
 }
 
-.btn {
+.preview-stage .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -190,12 +196,12 @@ img { max-width: 100%; display: block; }
   border: none;
   font-family: var(--font-body);
 }
-.btn--cart {
+
+.preview-stage .btn--cart {
   background: var(--color-bg-alt);
   color: var(--color-forest-dark);
 }
 
-/* Плейсхолдер, пока поле "Фото" не заполнено */
 .product-card__placeholder-icon {
   width: 34px;
   height: 34px;
