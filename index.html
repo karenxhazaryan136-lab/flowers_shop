@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Цветочная Мастерская — букеты с душой и доставкой от 1 часа</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: #faf6ec;
+  --bg-soft: #f1ead7;
+  --ink: #2a2a22;
+  --ink-soft: #6d6a58;
+  --accent: #5f7a4f;
+  --accent-deep: #435c37;
+  --rust: #b25a34;
+  --gold: #c69a4a;
+  --line: #e6dfc9;
+  --white: #ffffff;
+  --radius-lg: 30px;
+  --radius-md: 18px;
+  --radius-sm: 10px;
+  --shadow: 0 24px 48px -26px rgba(42,42,34,0.28);
+}
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{ margin:0; background: var(--bg); color: var(--ink); font-family:'Manrope', sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+h1,h2,h3{ font-family:'Fraunces', serif; font-weight:500; letter-spacing:-0.01em; margin:0; }
+p{ margin:0; }
+a{ text-decoration:none; color:inherit; }
+img{ max-width:100%; display:block; }
+ul{ margin:0; padding:0; list-style:none; }
+button{ font-family:inherit; }
+.wrap{ max-width:1160px; margin:0 auto; padding:0 32px; }
+
+.reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
+.reveal.in{ opacity:1; transform:none; }
+.stagger-group .stagger-item{ transition-delay: calc(var(--i,0) * .09s); }
+@media (prefers-reduced-motion: reduce){ .reveal{ opacity:1!important; transform:none!important; transition:none!important; } html{ scroll-behavior:auto; } }
+
+/* ---------- Header ---------- */
+header{ position:sticky; top:0; z-index:60; background:rgba(250,246,236,.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+.header-inner{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:16px; }
+.logo{ display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif; font-size:20px; font-weight:500; white-space:nowrap; }
+.logo-mark{ width:32px; height:32px; flex-shrink:0; }
+.header-right{ display:flex; align-items:center; gap:16px; }
+.nav-link{ font-size:14px; font-weight:700; color:var(--ink-soft); white-space:nowrap; transition:color .2s ease; }
+.nav-link:hover{ color:var(--accent-deep); }
+.phone{ font-weight:700; font-size:15px; white-space:nowrap; }
+.phone span{ display:block; font-weight:500; font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.08em; }
+
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; border:none; cursor:pointer; font-weight:700; font-size:15px; padding:14px 28px; border-radius:999px; background:var(--accent); color:#fbf8f0; transition:background .25s ease, box-shadow .25s ease; box-shadow:0 14px 26px -14px rgba(67,92,55,.55); }
+.magnetic.fallback-lift{ transition:transform .28s cubic-bezier(.22,.61,.36,1); }
+.magnetic.fallback-lift:hover{ transform:translateY(-3px); }
+.btn:hover{ background:var(--accent-deep); }
+.btn:focus-visible{ outline:3px solid var(--ink); outline-offset:3px; }
+.btn.btn-sm{ padding:10px 18px; font-size:13.5px; }
+.btn.btn-block{ width:100%; }
+
+.cart-btn{ position:relative; display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:50%; border:1.5px solid var(--line); background:var(--white); cursor:pointer; flex-shrink:0; }
+.cart-btn svg{ width:20px; height:20px; stroke:var(--ink); fill:none; stroke-width:1.7; }
+.cart-count{ position:absolute; top:-4px; right:-4px; min-width:19px; height:19px; padding:0 4px; border-radius:999px; background:var(--rust); color:#fff; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; transform:scale(0); transition:transform .25s cubic-bezier(.34,1.56,.64,1); }
+.cart-count.show{ transform:scale(1); }
+
+/* ---------- Hero ---------- */
+.hero{ padding:64px 0 56px; overflow:hidden; }
+.hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:52px; align-items:center; }
+.eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--rust); margin-bottom:20px; }
+.eyebrow::before{ content:""; width:26px; height:1.5px; background:var(--rust); }
+.hero h1{ font-size:clamp(36px,5vw,56px); line-height:1.08; }
+.hero h1 em{ font-style:italic; color:var(--accent-deep); }
+.hero-sub{ margin-top:20px; max-width:460px; font-size:17px; line-height:1.6; color:var(--ink-soft); }
+.hero-cta{ margin-top:30px; display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+.hero-stat{ font-size:13px; color:var(--ink-soft); line-height:1.4; }
+.hero-stat b{ display:block; font-family:'Fraunces', serif; font-size:21px; color:var(--ink); font-weight:600; }
+.hero-visual{ position:relative; aspect-ratio:4/4.3; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow); background:var(--bg-soft); }
+.hero-visual img{ width:100%; height:112%; object-fit:cover; }
+.hero-visual .cred{ position:absolute; bottom:14px; right:16px; font-size:10.5px; color:rgba(255,255,255,.85); background:rgba(42,42,34,.35); padding:4px 9px; border-radius:999px; backdrop-filter:blur(3px); }
+
+/* ---------- Sections ---------- */
+section{ padding:76px 0; }
+.section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:34px; flex-wrap:wrap; }
+.section-head h2{ font-size:clamp(27px,3.4vw,38px); }
+.section-head p{ max-width:380px; color:var(--ink-soft); font-size:15px; line-height:1.6; }
+.kicker{ font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--rust); margin-bottom:12px; display:block; }
+
+/* ---------- Filter bar ---------- */
+.filter-bar{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
+.filter-chip{ padding:10px 20px; border-radius:999px; border:1.5px solid var(--line); background:var(--white); font-size:14px; font-weight:700; color:var(--ink-soft); cursor:pointer; transition:all .25s ease; }
+.filter-chip:hover{ border-color:var(--accent); color:var(--ink); }
+.filter-chip.active{ background:var(--ink); border-color:var(--ink); color:var(--bg); }
+
+/* ---------- Catalog ---------- */
+.catalog-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+.card{ background:var(--white); border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--line); display:flex; flex-direction:column; transition:transform .4s cubic-bezier(.22,.61,.36,1), box-shadow .4s ease, opacity .35s ease; }
+.card.hidden-item{ display:none; }
+.card:hover{ transform:translateY(-7px); box-shadow:var(--shadow); }
+.card-media{ aspect-ratio:4/3; position:relative; overflow:hidden; background:var(--bg-soft); }
+.card-media img{ width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.22,.61,.36,1); }
+.card:hover .card-media img{ transform:scale(1.09); }
+.card-media::after{ content:""; position:absolute; inset:0; background:var(--accent); opacity:0; transition:opacity .4s ease; mix-blend-mode:multiply; }
+.card:hover .card-media::after{ opacity:.08; }
+.card-tag{ position:absolute; top:14px; left:14px; background:rgba(255,255,255,.92); font-size:11px; font-weight:700; letter-spacing:.03em; padding:6px 12px; border-radius:999px; color:var(--rust); z-index:2; }
+.card-body{ padding:22px 20px 24px; display:flex; flex-direction:column; gap:10px; flex:1; }
+.card-body h3{ font-size:20px; }
+.card-body p{ color:var(--ink-soft); font-size:14px; line-height:1.55; }
+.card-foot{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; padding-top:14px; gap:10px; }
+.price{ font-family:'Fraunces', serif; font-size:22px; font-weight:600; }
+.price sub{ font-family:'Manrope', sans-serif; font-size:12.5px; font-weight:600; color:var(--ink-soft); vertical-align:2px; }
+.add-btn{ display:inline-flex; align-items:center; gap:7px; }
+.add-btn.added{ background:var(--rust); }
+
+/* ---------- Advantages ---------- */
+.adv-section{ background:var(--bg-soft); border-radius:var(--radius-lg); margin:0 32px; padding:64px 40px; }
+.adv-section .wrap{ padding:0; max-width:1000px; }
+.adv-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+.adv-item{ text-align:center; display:flex; flex-direction:column; align-items:center; gap:16px; }
+.adv-icon{ width:64px; height:64px; border-radius:50%; background:var(--white); display:flex; align-items:center; justify-content:center; box-shadow:0 12px 24px -14px rgba(42,42,34,.2); transition:transform .35s ease; }
+.adv-item:hover .adv-icon{ transform:translateY(-4px) rotate(-4deg); }
+.adv-icon svg{ width:28px; height:28px; stroke:var(--rust); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+.adv-item h3{ font-size:17px; }
+.adv-item p{ font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
+/* ---------- Contacts ---------- */
+.contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:stretch; }
+.contact-info{ background:var(--ink); color:var(--bg); border-radius:var(--radius-lg); padding:40px 36px; display:flex; flex-direction:column; justify-content:space-between; }
+.contact-info h2{ color:var(--bg); font-size:28px; }
+.contact-info .sub{ color:#c7c3b3; margin-top:12px; font-size:14.5px; line-height:1.6; max-width:340px; }
+.contact-list{ margin-top:32px; display:flex; flex-direction:column; gap:18px; }
+.contact-list li{ display:flex; gap:14px; align-items:flex-start; font-size:14.5px; }
+.contact-list svg{ width:19px; height:19px; stroke:var(--gold); fill:none; stroke-width:1.6; flex-shrink:0; margin-top:2px; }
+.contact-list b{ display:block; font-weight:700; }
+.contact-list span.small{ color:#c7c3b3; font-size:12.5px; }
+.contact-form{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius-lg); padding:40px 36px; }
+.contact-form h3{ font-size:22px; margin-bottom:6px; }
+.contact-form .form-sub{ color:var(--ink-soft); font-size:13.5px; margin-bottom:24px; }
+.field{ margin-bottom:16px; }
+.field label{ display:block; font-size:12.5px; font-weight:700; margin-bottom:7px; }
+.field input{ width:100%; padding:13px 15px; border-radius:var(--radius-sm); border:1.5px solid var(--line); background:var(--bg); font-size:14.5px; color:var(--ink); transition:border-color .2s ease; }
+.field input:focus{ outline:none; border-color:var(--accent); }
+.form-note{ margin-top:12px; font-size:12px; color:var(--ink-soft); text-align:center; }
+
+footer{ padding:36px 0; border-top:1px solid var(--line); }
+.footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-size:13px; color:var(--ink-soft); }
+
+/* ---------- Cart drawer ---------- */
+.cart-overlay{ position:fixed; inset:0; background:rgba(42,42,34,.4); z-index:90; opacity:0; pointer-events:none; transition:opacity .3s ease; }
+.cart-overlay.open{ opacity:1; pointer-events:auto; }
+.cart-drawer{ position:fixed; top:0; right:0; height:100%; width:min(420px, 92vw); background:var(--bg); z-index:91; box-shadow:-20px 0 50px -20px rgba(0,0,0,.35); transform:translateX(100%); transition:transform .4s cubic-bezier(.22,.61,.36,1); display:flex; flex-direction:column; }
+.cart-drawer.open{ transform:translateX(0); }
+.cart-head{ display:flex; align-items:center; justify-content:space-between; padding:22px 24px; border-bottom:1px solid var(--line); }
+.cart-head h3{ font-size:20px; }
+.cart-close{ width:36px; height:36px; border-radius:50%; border:1.5px solid var(--line); background:var(--white); cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.cart-close svg{ width:16px; height:16px; stroke:var(--ink); stroke-width:2; }
+.cart-items{ flex:1; overflow-y:auto; padding:18px 24px; display:flex; flex-direction:column; gap:16px; }
+.cart-empty{ text-align:center; color:var(--ink-soft); font-size:14px; padding:60px 10px; }
+.cart-row{ display:flex; gap:12px; align-items:center; }
+.cart-row img{ width:64px; height:64px; border-radius:12px; object-fit:cover; flex-shrink:0; }
+.cart-row-body{ flex:1; min-width:0; }
+.cart-row-body h4{ font-family:'Fraunces', serif; font-size:15px; font-weight:600; margin:0 0 4px; }
+.cart-row-price{ font-size:13px; color:var(--ink-soft); }
+.qty-ctrl{ display:flex; align-items:center; gap:8px; margin-top:6px; }
+.qty-ctrl button{ width:24px; height:24px; border-radius:50%; border:1.5px solid var(--line); background:var(--white); cursor:pointer; font-size:14px; line-height:1; display:flex; align-items:center; justify-content:center; }
+.qty-ctrl span{ font-size:13.5px; font-weight:700; min-width:14px; text-align:center; }
+.cart-remove{ background:none; border:none; cursor:pointer; color:var(--ink-soft); font-size:12px; text-decoration:underline; padding:0; margin-top:4px; }
+.cart-foot{ border-top:1px solid var(--line); padding:20px 24px 26px; }
+.cart-total{ display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; font-family:'Fraunces', serif; font-size:19px; font-weight:600; }
+
+@media (max-width:960px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .hero-visual{ order:-1; max-width:420px; margin:0 auto; aspect-ratio:4/3.2; }
+  .catalog-grid{ grid-template-columns:1fr 1fr; }
+  .adv-grid{ grid-template-columns:1fr; gap:28px; }
+  .contact-grid{ grid-template-columns:1fr; }
+  .adv-section{ margin:0 20px; padding:48px 24px; }
+}
+@media (max-width:640px){
+  .wrap{ padding:0 20px; }
+  .phone{ display:none; }
+  .nav-link{ display:none; }
+  .header-inner{ padding:13px 0; gap:10px; }
+  .header-right{ gap:10px; }
+  .logo{ font-size:17px; gap:8px; }
+  .logo-mark{ width:28px; height:28px; }
+  .cart-btn{ width:40px; height:40px; }
+  .btn.btn-sm{ padding:10px 16px; font-size:13px; }
+  .hero{ padding:32px 0 36px; }
+  .hero-visual{ aspect-ratio:4/3; border-radius:var(--radius-md); }
+  .hero-cta{ gap:18px; }
+  .catalog-grid{ grid-template-columns:1fr; gap:20px; }
+  .filter-bar{ gap:8px; }
+  .filter-chip{ padding:11px 18px; font-size:13.5px; }
+  .adv-section{ margin:0 14px; padding:40px 20px; border-radius:var(--radius-md); }
+  .contact-info, .contact-form{ padding:30px 22px; }
+  .contact-info, .contact-form{ border-radius:var(--radius-md); }
+  section{ padding:52px 0; }
+  .section-head{ flex-direction:column; align-items:flex-start; gap:14px; }
+  .cart-drawer{ width:100vw; }
+  .qty-ctrl button{ width:30px; height:30px; font-size:16px; }
+  .card-foot{ flex-wrap:wrap; }
+}
+@media (max-width:400px){
+  .logo span.logo-text{ display:none; }
+  .header-inner{ padding:12px 0; }
+  .hero h1{ font-size:32px; }
+  .hero-sub{ font-size:15.5px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Netlify Identity: needed on the homepage so invite/password-recovery links
+     from the /admin CMS (which redirect here with a token) work correctly. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function (user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function () {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+
+
+<header>
+  <div class="wrap header-inner">
+    <a class="logo" href="#top">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="13" r="5.5" fill="none" stroke="#5f7a4f" stroke-width="1.6"/>
+        <circle cx="12.5" cy="21" r="5.5" fill="none" stroke="#5f7a4f" stroke-width="1.6"/>
+        <circle cx="27.5" cy="21" r="5.5" fill="none" stroke="#5f7a4f" stroke-width="1.6"/>
+        <circle cx="20" cy="21" r="4" fill="#c69a4a"/>
+        <path d="M20 25 L20 35" stroke="#435c37" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-text" id="siteShopName">Цветочная Мастерская</span>
+    </a>
+    <div class="header-right">
+      <a class="nav-link" href="services.html">Услуги</a>
+      <a class="phone" id="sitePhoneLink" href="tel:+74951234567">+7 (495) 123-45-67<span id="siteHours">Ежедневно, 8:00–22:00</span></a>
+      <button class="cart-btn magnetic" id="cartToggle" aria-label="Корзина">
+        <svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <a href="#contacts" class="btn btn-sm magnetic">Заказать звонок</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <span class="eyebrow">Свежий срез каждое утро</span>
+        <h1>Букеты <em>с душой</em> и&nbsp;доставкой от&nbsp;1 часа</h1>
+        <p class="hero-sub">Собираем каждый букет вручную из цветов, привезённых сегодня утром. Пришлём фото готовой работы перед отправкой — вы увидите точно то, что получит адресат.</p>
+        <div class="hero-cta">
+          <a href="#catalog" class="btn magnetic">Смотреть каталог</a>
+          <div class="hero-stat"><b>1&nbsp;час</b>среднее время доставки по городу</div>
+        </div>
+      </div>
+      <div class="hero-visual reveal" data-parallax data-speed="0.05">
+        <img src="https://images.pexels.com/photos/20156573/pexels-photo-20156573.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Букет гортензий ручной сборки" loading="eager">
+        <span class="cred">Фото: Pexels</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CATALOG ================= -->
+  <section id="catalog">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">Витрина</span>
+          <h2>Каталог букетов</h2>
+        </div>
+        <p>Фильтруйте по типу цветов и добавляйте букеты в корзину — оформление в конце страницы.</p>
+      </div>
+
+      <div class="filter-bar reveal" id="filterBar">
+        <button class="filter-chip active" data-filter="all">Все</button>
+        <button class="filter-chip" data-filter="rose">Розы</button>
+        <button class="filter-chip" data-filter="tulip">Тюльпаны</button>
+        <button class="filter-chip" data-filter="premium">Премиум</button>
+      </div>
+
+      <div class="catalog-grid stagger-group" id="catalogGrid"><!-- rendered by JS --></div>
+    </div>
+  </section>
+
+  <!-- ================= ADVANTAGES ================= -->
+  <section>
+    <div class="wrap">
+      <div class="adv-section reveal">
+        <div class="wrap">
+          <div class="section-head" style="margin-bottom:40px;">
+            <div><span class="kicker">Почему мы</span><h2>Три причины доверить букет нам</h2></div>
+          </div>
+          <div class="adv-grid stagger-group">
+            <div class="adv-item stagger-item" style="--i:0">
+              <div class="adv-icon"><svg viewBox="0 0 24 24"><path d="M12 3v6M12 21v-6M5 12H3M21 12h-2M7.5 7.5 6 6M18 18l-1.5-1.5M16.5 7.5 18 6M6 18l1.5-1.5"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <h3>Свежие поставки каждый день</h3>
+              <p>Закупаем цветы у оптовых поставщиков ежедневно — букеты не залёживаются в холодильнике.</p>
+            </div>
+            <div class="adv-item stagger-item" style="--i:1">
+              <div class="adv-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-3h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg></div>
+              <h3>Фото букета перед отправкой</h3>
+              <p>Пришлём снимок готовой работы в мессенджер — вы убедитесь, что всё сделано так, как вы хотели.</p>
+            </div>
+            <div class="adv-item stagger-item" style="--i:2">
+              <div class="adv-icon"><svg viewBox="0 0 24 24"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z"/><path d="M9 20h6"/></svg></div>
+              <h3>Бесплатная аквапак-упаковка</h3>
+              <p>Каждый букет едет с водой у стебля — цветы доезжают свежими даже в жаркий день.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACTS ================= -->
+  <section id="contacts">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><span class="kicker">Свяжитесь с нами</span><h2>Оформим заказ за пару минут</h2></div>
+        <p>Оставьте телефон — перезвоним в течение 10 минут и поможем выбрать букет под повод.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div>
+            <h2 id="siteShopNameBlock">Цветочная<br>Мастерская</h2>
+            <p class="sub">Приходите за букетом лично или закажите доставку — привезём в течение часа по городу.</p>
+          </div>
+          <ul class="contact-list">
+            <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b id="siteAddress">г. Москва, ул. Садовая, 14</b><span class="small" id="siteHours2">ежедневно, 8:00–22:00</span></div></li>
+            <li><svg viewBox="0 0 24 24"><path d="M4 5c0 8 7 15 15 15l2-4-5-2-2 2c-2-1-4-3-5-5l2-2-2-5-4 1Z"/></svg><div><b id="sitePhoneText">+7 (495) 123-45-67</b><span class="small">звонок и WhatsApp</span></div></li>
+            <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6 8 7 8-7"/></svg><div><b id="siteEmail">hello@flower-workshop.ru</b><span class="small">ответим в течение дня</span></div></li>
+          </ul>
+        </div>
+        <form class="contact-form reveal" id="orderForm">
+          <h3>Оформить заказ</h3>
+          <p class="form-sub" id="orderSummary">Добавьте букеты в корзину, чтобы увидеть сумму заказа здесь.</p>
+          <div class="field"><label for="name">Ваше имя</label><input id="name" type="text" name="name" placeholder="Например, Анна" required></div>
+          <div class="field"><label for="phone2">Телефон</label><input id="phone2" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required></div>
+          <button type="submit" class="btn btn-block magnetic">Отправить заявку</button>
+          <p class="form-note" id="formNote">Нажимая кнопку, вы соглашаетесь с политикой обработки данных.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 <span id="siteShopNameFooter">Цветочная Мастерская</span>. Все права защищены.</span>
+    <span>Фото цветов: Pexels (свободная лицензия)</span>
+  </div>
+</footer>
+
+<!-- ================= CART DRAWER ================= -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Корзина">
+  <div class="cart-head">
+    <h3>Ваша корзина</h3>
+    <button class="cart-close" id="cartClose"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>Итого</span><span id="cartTotal">0 ₽</span></div>
+    <a href="#contacts" class="btn btn-block magnetic" id="checkoutBtn">Оформить заказ</a>
+  </div>
+</aside>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Product data ----------
+     Loaded from /content/products/index.json (editable via the /admin CMS).
+     This array is only a fallback for when that file can't be fetched
+     (e.g. opening the file directly instead of via a server). */
+  var PRODUCTS = [
+    { id:'romance', category:'rose', tag:'Хит продаж', title:'«Романтика»', desc:'15 садовых роз в крафтовой упаковке с льняной лентой.', price:3490, unit:'/ 15 шт', img:'https://images.pexels.com/photos/2791043/pexels-photo-2791043.jpeg?auto=compress&cs=tinysrgb&w=700' },
+    { id:'spring', category:'tulip', tag:'Новинка сезона', title:'«Весенний микс»', desc:'9 тюльпанов — лёгкий, солнечный букет для весеннего настроения.', price:2190, unit:'/ 9 шт', img:'https://images.pexels.com/photos/9008503/pexels-photo-9008503.jpeg?auto=compress&cs=tinysrgb&w=700' },
+    { id:'premium', category:'premium', tag:'Премиум', title:'«Премиум»', desc:'Белые пионы в стеклянной вазе — статусный подарок без лишних слов.', price:4990, unit:'/ букет', img:'https://images.pexels.com/photos/20156576/pexels-photo-20156576.jpeg?auto=compress&cs=tinysrgb&w=700' },
+    { id:'rose-mini', category:'rose', tag:'Компактный', title:'«Розовый комплимент»', desc:'7 роз без излишеств — маленький жест для важного человека.', price:1690, unit:'/ 7 шт', img:'https://images.pexels.com/photos/2014696/pexels-photo-2014696.jpeg?auto=compress&cs=tinysrgb&w=700' },
+    { id:'tulip-box', category:'tulip', tag:'В коробке', title:'«Тюльпаны в коробке»', desc:'25 тюльпанов в подарочной шляпной коробке.', price:3290, unit:'/ 25 шт', img:'https://images.pexels.com/photos/11412555/pexels-photo-11412555.jpeg?auto=compress&cs=tinysrgb&w=700' },
+    { id:'hydrangea', category:'premium', tag:'Премиум', title:'«Гортензия де люкс»', desc:'Крупные шапки гортензии — объёмный статусный букет.', price:5490, unit:'/ букет', img:'https://images.pexels.com/photos/20156573/pexels-photo-20156573.jpeg?auto=compress&cs=tinysrgb&w=700' }
+  ];
+
+  var fmt = function(n){ return n.toLocaleString('ru-RU') + ' ₽'; };
+
+  /* ---------- Render catalog (called once data is ready) ---------- */
+  var grid = document.getElementById('catalogGrid');
+  function renderCatalog(products){
+    grid.innerHTML = '';
+    products.forEach(function(p, i){
+      var el = document.createElement('article');
+      el.className = 'card reveal stagger-item';
+      el.style.setProperty('--i', i % 3);
+      el.setAttribute('data-category', p.category);
+      el.innerHTML =
+        '<div class="card-media" data-parallax data-speed="0.025">' +
+          '<span class="card-tag">' + p.tag + '</span>' +
+          '<img src="' + p.img + '" alt="' + p.title + '" loading="lazy">' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<h3>' + p.title + '</h3>' +
+          '<p>' + p.desc + '</p>' +
+          '<div class="card-foot">' +
+            '<div class="price">' + fmt(p.price) + ' <sub>' + p.unit + '</sub></div>' +
+            '<button class="btn btn-sm add-btn magnetic" data-add="' + p.id + '">В корзину</button>' +
+          '</div>' +
+        '</div>';
+      grid.appendChild(el);
+    });
+  }
+  renderCatalog(PRODUCTS); /* render fallback immediately so the page isn't empty while fetching */
+
+  /* ---------- Filter ---------- */
+  var filterBar = document.getElementById('filterBar');
+  filterBar.addEventListener('click', function(e){
+    var btn = e.target.closest('.filter-chip');
+    if(!btn) return;
+    filterBar.querySelectorAll('.filter-chip').forEach(function(c){ c.classList.remove('active'); });
+    btn.classList.add('active');
+    var f = btn.getAttribute('data-filter');
+    grid.querySelectorAll('.card').forEach(function(card){
+      var match = (f === 'all' || card.getAttribute('data-category') === f);
+      card.classList.toggle('hidden-item', !match);
+    });
+  });
+
+  /* ---------- Cart (persisted in localStorage) ---------- */
+  var CART_KEY = 'flower_workshop_cart_v1';
+  var cart = {};
+  try{ cart = JSON.parse(localStorage.getItem(CART_KEY)) || {}; }catch(e){ cart = {}; }
+
+  var cartCountEl = document.getElementById('cartCount');
+  var cartItemsEl = document.getElementById('cartItems');
+  var cartTotalEl = document.getElementById('cartTotal');
+  var orderSummaryEl = document.getElementById('orderSummary');
+  var drawer = document.getElementById('cartDrawer');
+  var overlay = document.getElementById('cartOverlay');
+
+  function saveCart(){
+    try{ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }catch(e){}
+  }
+
+  function productById(id){ return PRODUCTS.filter(function(p){ return p.id === id; })[0]; }
+
+  function cartTotalCount(){
+    return Object.keys(cart).reduce(function(sum,id){ return sum + cart[id]; }, 0);
+  }
+  function cartTotalPrice(){
+    return Object.keys(cart).reduce(function(sum,id){
+      var p = productById(id);
+      return sum + (p ? p.price * cart[id] : 0);
+    }, 0);
+  }
+
+  function renderCart(){
+    var ids = Object.keys(cart).filter(function(id){ return cart[id] > 0; });
+    if(ids.length === 0){
+      cartItemsEl.innerHTML = '<div class="cart-empty">Пока пусто. Выберите букет в каталоге — он появится здесь.</div>';
+    } else {
+      cartItemsEl.innerHTML = ids.map(function(id){
+        var p = productById(id);
+        if(!p) return '';
+        return (
+          '<div class="cart-row" data-row="' + id + '">' +
+            '<img src="' + p.img + '" alt="' + p.title + '">' +
+            '<div class="cart-row-body">' +
+              '<h4>' + p.title + '</h4>' +
+              '<div class="cart-row-price">' + fmt(p.price) + '</div>' +
+              '<div class="qty-ctrl">' +
+                '<button data-qty="-1" data-id="' + id + '" aria-label="Уменьшить">−</button>' +
+                '<span>' + cart[id] + '</span>' +
+                '<button data-qty="1" data-id="' + id + '" aria-label="Увеличить">+</button>' +
+              '</div>' +
+              '<button class="cart-remove" data-remove="' + id + '">Удалить</button>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+    var count = cartTotalCount();
+    var total = cartTotalPrice();
+    cartCountEl.textContent = count;
+    cartCountEl.classList.toggle('show', count > 0);
+    cartTotalEl.textContent = fmt(total);
+    orderSummaryEl.textContent = count > 0
+      ? ('В корзине: ' + count + ' ' + (count === 1 ? 'букет' : 'букета/ов') + ' на сумму ' + fmt(total) + '.')
+      : 'Добавьте букеты в корзину, чтобы увидеть сумму заказа здесь.';
+  }
+
+  function addToCart(id){
+    cart[id] = (cart[id] || 0) + 1;
+    saveCart();
+    renderCart();
+  }
+  function changeQty(id, delta){
+    cart[id] = (cart[id] || 0) + delta;
+    if(cart[id] <= 0) delete cart[id];
+    saveCart();
+    renderCart();
+  }
+  function removeFromCart(id){
+    delete cart[id];
+    saveCart();
+    renderCart();
+  }
+
+  grid.addEventListener('click', function(e){
+    var addBtn = e.target.closest('[data-add]');
+    if(!addBtn) return;
+    addToCart(addBtn.getAttribute('data-add'));
+    addBtn.classList.add('added');
+    var original = addBtn.textContent;
+    addBtn.textContent = 'Добавлено ✓';
+    setTimeout(function(){ addBtn.classList.remove('added'); addBtn.textContent = original; }, 1100);
+    openCart();
+  });
+
+  cartItemsEl.addEventListener('click', function(e){
+    var qtyBtn = e.target.closest('[data-qty]');
+    if(qtyBtn){ changeQty(qtyBtn.getAttribute('data-id'), parseInt(qtyBtn.getAttribute('data-qty'),10)); return; }
+    var rmBtn = e.target.closest('[data-remove]');
+    if(rmBtn){ removeFromCart(rmBtn.getAttribute('data-remove')); }
+  });
+
+  function openCart(){ drawer.classList.add('open'); overlay.classList.add('open'); }
+  function closeCart(){ drawer.classList.remove('open'); overlay.classList.remove('open'); }
+  document.getElementById('cartToggle').addEventListener('click', openCart);
+  document.getElementById('cartClose').addEventListener('click', closeCart);
+  overlay.addEventListener('click', closeCart);
+
+  /* ---------- WhatsApp checkout ---------- */
+  var SETTINGS = {
+    shopName: 'Цветочная Мастерская',
+    phone: '+7 (495) 123-45-67',
+    phoneHref: '+74951234567',
+    whatsapp: '74951234567',
+    address: 'г. Москва, ул. Садовая, 14',
+    hours: 'ежедневно, 8:00–22:00',
+    email: 'hello@flower-workshop.ru'
+  };
+
+  function buildWhatsAppLink(){
+    var ids = Object.keys(cart).filter(function(id){ return cart[id] > 0; });
+    var lines = ['Здравствуйте! Хочу оформить заказ:'];
+    ids.forEach(function(id){
+      var p = productById(id);
+      if(!p) return;
+      lines.push('• ' + p.title + ' × ' + cart[id] + ' — ' + fmt(p.price * cart[id]));
+    });
+    if(ids.length){ lines.push('Итого: ' + fmt(cartTotalPrice())); }
+    else { lines.push('(пока без выбранного букета — подскажите, пожалуйста, варианты)'); }
+    var text = encodeURIComponent(lines.join('\n'));
+    return 'https://wa.me/' + SETTINGS.whatsapp + '?text=' + text;
+  }
+
+  var checkoutBtn = document.getElementById('checkoutBtn');
+  checkoutBtn.setAttribute('href', buildWhatsAppLink());
+  checkoutBtn.setAttribute('target', '_blank');
+  checkoutBtn.setAttribute('rel', 'noopener');
+  checkoutBtn.addEventListener('click', function(){
+    checkoutBtn.setAttribute('href', buildWhatsAppLink()); /* refresh right before navigating */
+    setTimeout(closeCart, 200);
+  });
+
+  renderCart();
+
+  /* ---------- Order form ---------- */
+  document.getElementById('orderForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var note = document.getElementById('formNote');
+    var count = cartTotalCount();
+    note.textContent = count > 0
+      ? ('Спасибо! Ваш заказ (' + count + ' поз., ' + fmt(cartTotalPrice()) + ') принят — перезвоним в течение 10 минут.')
+      : 'Спасибо! Мы перезвоним в течение 10 минут.';
+  });
+
+  /* ---------- Scroll reveal (re-runnable for content added after fetch) ---------- */
+  var observedReveal = new WeakSet();
+  function observeReveal(){
+    var els = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window && !reduceMotion){
+      if(!observeReveal._io){
+        observeReveal._io = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){ entry.target.classList.add('in'); observeReveal._io.unobserve(entry.target); }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      }
+      els.forEach(function(el){
+        if(observedReveal.has(el)) return;
+        observedReveal.add(el);
+        observeReveal._io.observe(el);
+      });
+    } else {
+      els.forEach(function(el){ el.classList.add('in'); });
+    }
+  }
+  observeReveal();
+
+  /* ---------- Magnetic buttons (smooth lerp + subtle lift), re-bindable ---------- */
+  var boundMagnetic = new WeakSet();
+  function bindMagnetic(){
+    if(reduceMotion || !window.matchMedia('(pointer: fine)').matches){
+      document.querySelectorAll('.magnetic').forEach(function(btn){ btn.classList.add('fallback-lift'); });
+      return;
+    }
+    document.querySelectorAll('.magnetic').forEach(function(btn){
+      if(boundMagnetic.has(btn)) return;
+      boundMagnetic.add(btn);
+      var targetX = 0, targetY = 0, curX = 0, curY = 0, hovering = false, raf = null;
+      var ease = 0.18, lift = -3;
+
+      function loop(){
+        curX += (targetX - curX) * ease;
+        curY += (targetY - curY) * ease;
+        var liftNow = hovering ? lift : 0;
+        btn.style.transform = 'translate(' + curX.toFixed(2) + 'px,' + (curY + liftNow).toFixed(2) + 'px)';
+        var settled = Math.abs(targetX - curX) < 0.05 && Math.abs(targetY - curY) < 0.05;
+        if(hovering || !settled){ raf = requestAnimationFrame(loop); } else { raf = null; }
+      }
+      function ensureLoop(){ if(!raf) raf = requestAnimationFrame(loop); }
+
+      btn.addEventListener('mouseenter', function(){ hovering = true; ensureLoop(); });
+      btn.addEventListener('mousemove', function(e){
+        var rect = btn.getBoundingClientRect();
+        targetX = (e.clientX - (rect.left + rect.width/2)) * 0.28;
+        targetY = (e.clientY - (rect.top + rect.height/2)) * 0.28;
+        ensureLoop();
+      });
+      btn.addEventListener('mouseleave', function(){
+        hovering = false; targetX = 0; targetY = 0; ensureLoop();
+      });
+    });
+  }
+  bindMagnetic();
+
+  /* ---------- Parallax ---------- */
+  var ticking = false;
+  function updateParallax(){
+    var vh = window.innerHeight;
+    document.querySelectorAll('[data-parallax]').forEach(function(el){
+      var rect = el.getBoundingClientRect();
+      var center = rect.top + rect.height/2 - vh/2;
+      var speed = parseFloat(el.getAttribute('data-speed')) || 0.04;
+      el.style.transform = 'translateY(' + (center * speed * -1).toFixed(1) + 'px)';
+    });
+    ticking = false;
+  }
+  if(!reduceMotion){
+    window.addEventListener('scroll', function(){
+      if(!ticking){ requestAnimationFrame(updateParallax); ticking = true; }
+    }, { passive:true });
+    updateParallax();
+  }
+
+  /* ---------- Apply settings.json to the page ---------- */
+  function applySettings(s){
+    SETTINGS = s;
+    document.getElementById('siteShopName').textContent = s.shopName;
+    document.getElementById('siteShopNameFooter').textContent = s.shopName;
+    var nameParts = s.shopName.split(' ');
+    document.getElementById('siteShopNameBlock').innerHTML = nameParts.join('<br>');
+    document.getElementById('sitePhoneLink').setAttribute('href', 'tel:' + s.phoneHref);
+    document.getElementById('sitePhoneLink').firstChild.textContent = s.phone + ' ';
+    document.getElementById('siteHours').textContent = s.hours;
+    document.getElementById('siteHours2').textContent = s.hours;
+    document.getElementById('siteAddress').textContent = s.address;
+    document.getElementById('sitePhoneText').textContent = s.phone;
+    document.getElementById('siteEmail').textContent = s.email;
+    checkoutBtn.setAttribute('href', buildWhatsAppLink());
+  }
+
+  /* ---------- Load live data from /content (editable via /admin CMS) ---------- */
+  Promise.all([
+    fetch('content/products/index.json').then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+    fetch('content/settings.json').then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
+  ]).then(function(results){
+    var productsData = results[0];
+    var settingsData = results[1];
+    if(productsData && productsData.items && productsData.items.length){
+      PRODUCTS = productsData.items;
+      renderCatalog(PRODUCTS);
+      bindMagnetic();
+      observeReveal();
+      renderCart();
+    }
+    if(settingsData){
+      applySettings(settingsData);
+    }
+  });
+})();
+</script>
+</body>
+</html>

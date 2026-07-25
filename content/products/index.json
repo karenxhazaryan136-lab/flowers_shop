@@ -1,0 +1,10 @@
+{
+  "items": [
+    { "id": "romance", "category": "rose", "tag": "Хит продаж", "title": "«Романтика»", "desc": "15 садовых роз в крафтовой упаковке с льняной лентой.", "price": 3490, "unit": "/ 15 шт", "img": "https://images.pexels.com/photos/2791043/pexels-photo-2791043.jpeg?auto=compress&cs=tinysrgb&w=700" },
+    { "id": "spring", "category": "tulip", "tag": "Новинка сезона", "title": "«Весенний микс»", "desc": "9 тюльпанов — лёгкий, солнечный букет для весеннего настроения.", "price": 2190, "unit": "/ 9 шт", "img": "https://images.pexels.com/photos/9008503/pexels-photo-9008503.jpeg?auto=compress&cs=tinysrgb&w=700" },
+    { "id": "premium", "category": "premium", "tag": "Премиум", "title": "«Премиум»", "desc": "Белые пионы в стеклянной вазе — статусный подарок без лишних слов.", "price": 4990, "unit": "/ букет", "img": "https://images.pexels.com/photos/20156576/pexels-photo-20156576.jpeg?auto=compress&cs=tinysrgb&w=700" },
+    { "id": "rose-mini", "category": "rose", "tag": "Компактный", "title": "«Розовый комплимент»", "desc": "7 роз без излишеств — маленький жест для важного человека.", "price": 1690, "unit": "/ 7 шт", "img": "https://images.pexels.com/photos/2014696/pexels-photo-2014696.jpeg?auto=compress&cs=tinysrgb&w=700" },
+    { "id": "tulip-box", "category": "tulip", "tag": "В коробке", "title": "«Тюльпаны в коробке»", "desc": "25 тюльпанов в подарочной шляпной коробке.", "price": 3290, "unit": "/ 25 шт", "img": "https://images.pexels.com/photos/11412555/pexels-photo-11412555.jpeg?auto=compress&cs=tinysrgb&w=700" },
+    { "id": "hydrangea", "category": "premium", "tag": "Премиум", "title": "«Гортензия де люкс»", "desc": "Крупные шапки гортензии — объёмный статусный букет.", "price": 5490, "unit": "/ букет", "img": "https://images.pexels.com/photos/20156573/pexels-photo-20156573.jpeg?auto=compress&cs=tinysrgb&w=700" }
+  ]
+}

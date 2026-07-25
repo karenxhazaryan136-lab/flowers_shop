@@ -1,0 +1,38 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Куда Decap CMS будет загружать фото товаров, и по какому пути сайт их найдёт
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+# Показывать предпросмотр редактируемых данных прямо в админке (необязательно, но удобно)
+publish_mode: simple
+
+collections:
+  - name: "products"
+    label: "Каталог букетов"
+    files:
+      - file: "content/products/index.json"
+        label: "Список товаров"
+        name: "products"
+        fields:
+          - label: "Товары"
+            name: "items"
+            widget: "list"
+            summary: "{{title}} — {{price}} ₽"
+            fields:
+              - { label: "ID (латиницей, без пробелов, уникальный)", name: "id", widget: "string" }
+              - label: "Категория"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Розы", value: "rose" }
+                  - { label: "Тюльпаны", value: "tulip" }
+                  - { label: "Премиум", value: "premium" }
+              - { label: "Бейдж на фото (например «Хит продаж»)", name: "tag", widget: "string", required: false }
+              - { label: "Название", name: "title", widget: "string" }
+              - { label: "Описание", name: "desc", widget: "text" }
+              - { label: "Цена, ₽", name: "price", widget: "number", value_type: "int" }
+              - { label: "Единица (например «/ 15 шт»)", name: "unit", widget: "string" }
+              - { label: "Фото", name: "img", widget: "image" }
